@@ -1,5 +1,7 @@
 // Created by Breanna Powell
-// 2021 10 17
+// 501 B / FALL
+// SID: 0641962
+// Due: 2021 10 20
 
 //** LinkedList */
 #include <iostream>
@@ -7,91 +9,139 @@
 #include "LinkedList.h"
 using namespace std;
 
+//default constructor - initializes head to nullptr and listSize to 0
 LinkedList::LinkedList()
    : head(nullptr), listSize(0)
 {
-   //????Ask about the struct:
-   Node::Node()
-   {
-      data = 0;
-      next = nullptr;
-   }
+}//end default constructor
 
-   head = nullptr;
-   curr = nullptr;
-   prev = nullptr;
-
-
-}
-
-//????Ask about copy constructor
-LinkedList::LinkedList(const LinkedList& oldList)
-   : //items to initialize
-{
-
-}
-
+//destructor
 LinkedList::~LinkedList()
 {
+  clear();
+}//end destructor
 
-}
-
-int LinkedList::getCurrentSize(){
+/** Gets the size of the list
+ @return The integer is a count of nodes in the list. */
+int LinkedList::getCurrentSize()const{
    return listSize;
-}
+}//end getCurrentSize
 
-bool LinkedList::isEmpty(){
+/** Check whether or not the list is empty.
+   Look at the listSize variable and make sure it is 0.
+ @return True if the list is empty, or false if not. */
+bool LinkedList::isEmpty()const{
    if (listSize == 0)
    return true;
-}
+}//end isEmpty
 
+/** Adds a new node to the beginning of the list
+ @post  If successful, anEntry is stored at the beginning of the 
+   list, and the size of the list increases by 1.
+ @param anEntry  The object to be added as an entry.
+ @return  True if add is successful, or false if not. */
 bool LinkedList::add(int anEntry){   
-   
-   Node* n = new Node; //Create a new node 
-   n->next = nullptr; //initialize next to nullptr
+   Node* n = new Node; //Create a new node
    n->data = anEntry; //initialize data to anEntry
-
+   n->next = nullptr; //initilize next to nullptr
+   //If the list is not empty, add to the beginning of the list
    if(head != nullptr){
-      curr = head;
-      //traverse to the end of the list
-      while(curr->next != nullptr){
-         curr = curr->next;
-      }
-      curr->next = n;
+      n->next = head; //Link n to the head of the list
    }
-   listSize++;
-}
+   head = n; //Point the head pointer at the new node
+   listSize++; //increase the size
+   return true;
+}//end add
 
+/** Removes the first occurrence of a given entry from the list,
+    if possible.
+ @post  If successful, anEntry is removed from the list
+    and the size of the list decreases by 1.
+ @param anEntry  The entry to remove.
+ @return  True if remove was successful, or false if not. */
 bool LinkedList::remove(int anEntry){
-   Node* delEntry = nullptr;
-   prev = head;
-   curr = head;
+   Node* delEntry = nullptr; //create a pointer to point to the node to delete
+   Node* prev = head; //create a pointer to point to the previous node
+   Node* curr = head; //create a pointer to point to the current node
    //traverse the list until the entry is found
    while (curr != nullptr && curr->data != anEntry){
       prev = curr;
       curr = curr->next;
-   }
-
-   if (curr == null){
+   }   
+   //if the list is empty, return false
+   if (curr == nullptr){
       return false;
    }
    else {
+      //Use delEntry pointer to point to the node to delete
       delEntry = curr;
-      curr = curr->next;
-      prev->next = curr;
-   }
-}
+      curr = curr->next; //move current to the next node
+      prev->next = curr; //connect previous where current is now
+      
+      //Delete the node and return the space to the system memory
+      delEntry->next = nullptr;
+      delete delEntry;
+      delEntry = nullptr;
 
+      //Decrease list size
+      listSize--;
+      
+      return true;
+   } //end if
+}//end remove
+
+/** Prints the list
+ @post If successful, prints out each entry in the list, one by one */
 void LinkedList::printList(){
-   curr = head;
+   Node* curr = head;
    while(curr != nullptr){
-      cout << curr->data << endl;
+      cout << curr->data << " ";
       curr = curr->next;
    }
-}
+}//end printList
 
+/** Removes all nodes from this list.
+ @post  The list contains no nodes, and the size of the list is 0. */
+void LinkedList::clear(){
+   while (!isEmpty()){
+      //Point to the beginning of the list
+      Node* curr = head;
+      //Disconnect the first item on the list from the rest
+      head = curr->next;
+      //Delete the node and return the space to the system memory
+      curr->next = nullptr;
+      delete curr;
+      curr = nullptr;
+      listSize--; //Decrease the size of the list
+   }
+}//end clear
 
-//void LinkedList::clear();
-//bool LinkedList::contains(int anEntry);
-//int LinkedList::getTraverseCount();
-//void LinkedList::resetTraverseCount();
+/** Tests whether the list contains a given entry.
+ @param anEntry  The entry to locate.
+ @return  True if list contains anEntry, or false if not. */
+bool LinkedList::contains(int anEntry){
+   Node* curr = head; //create a pointer to point to the current node
+   //traverse the list until the entry is found
+   while (curr != nullptr && curr->data != anEntry){
+      curr = curr->next;
+      traverseCount++; //increase the count of nodes traversed
+   }   
+   //if the list is empty, return false
+   if (curr == nullptr){
+      return false;
+   }
+   else {
+      return true;
+   }
+}//end contains
+
+/** Get the count of number of nodes traversed.
+ @return  The integer number of nodes traversed since last time the count was reset. */
+int LinkedList::getTraverseCount(){
+   return traverseCount;
+}//end getTraverseCount
+
+/** Reset the count of nodes traversed to zero. */
+void LinkedList::resetTraverseCount(){
+   traverseCount = 0;
+}//end resetTraverseCount

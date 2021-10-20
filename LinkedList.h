@@ -1,6 +1,6 @@
 // Created by Breanna Powell
 // 501 B / FALL
-// SID: 
+// SID: 0641962
 // Due: 2021 10 20
 
 /** ADT LinkedList: IList
@@ -15,9 +15,6 @@ public:
    //Default Constructor
    LinkedList();           
    
-   //Copy Constructor -- ask about format???
-   LinkedList(const LinkedList& oldList);   
-   
    //Destructor
    ~LinkedList();
 
@@ -30,9 +27,9 @@ public:
     @return True if the list is empty, or false if not. */
    bool isEmpty() const;
 
-   /** Adds a new node to the end of the list
-    @post  If successful, anEntry is stored at the end of the 
-       list, and the size of the list increases by 1.
+   /** Adds a new node to the beginning of the list
+    @post  If successful, anEntry is stored at the beginning of the 
+      list, and the size of the list increases by 1.
     @param anEntry  The object to be added as an entry.
     @return  True if add is successful, or false if not. */
    bool add(int anEntry);
@@ -45,6 +42,8 @@ public:
     @return  True if remove was successful, or false if not. */
    bool remove(int anEntry);
 
+   /** Prints the list
+    @post If successful, prints out each entry in the list, one by one */
    void printList();
 
    /** Removes all nodes from this list.
@@ -63,20 +62,25 @@ public:
    /** Reset the count of nodes traversed to zero. */
    void resetTraverseCount();
 
-   private:
-   //Node struct - to build our nodes
+private:
+   //Node struct - to build our nodes LinkedList::Node
    struct Node
    {
       int data;
       Node* next;
-   }
-
-   Node* head = nullptr; //Pointer to the first node
-   Node* curr = nullptr; //Pointer to the current node
-   Node* prev = nullptr; //Pointer to the previous node
+   }; //important to include the semicolon!!!!
+   
+   //Keep track of the list size for the isEmpty and getCurrentSize functions 
    int listSize = 0;
 
-}//end LinkedList
+   //Create the head pointer and initialize to 0
+   Node* head = nullptr;
 
-#include "LinkedList.cpp"
+protected:
+   //Keep track of the number of nodes traversed during the search
+   int traverseCount = 0;
+
+};//end LinkedList class
+
+//#include "LinkedList.cpp" - textbook did this somewhere - because of template class
 #endif
