@@ -31,8 +31,11 @@ int LinkedList::getCurrentSize()const{
    Look at the listSize variable and make sure it is 0.
  @return True if the list is empty, or false if not. */
 bool LinkedList::isEmpty()const{
-   if (listSize == 0)
+   if (listSize == 0){
    return true;
+   }
+   else
+   return false;
 }//end isEmpty
 
 /** Adds a new node to the beginning of the list
@@ -86,6 +89,8 @@ bool LinkedList::remove(int anEntry){
       //Decrease list size
       listSize--;
       
+      prev = nullptr; //return to memory?
+      curr = nullptr; //return to memory?
       return true;
    } //end if
 }//end remove
@@ -98,6 +103,7 @@ void LinkedList::printList(){
       cout << curr->data << " ";
       curr = curr->next;
    }
+   curr = nullptr; //return to memory?
 }//end printList
 
 /** Removes all nodes from this list.
@@ -114,6 +120,7 @@ void LinkedList::clear(){
       curr = nullptr;
       listSize--; //Decrease the size of the list
    }
+   head = nullptr; //return to memory?
 }//end clear
 
 /** Tests whether the list contains a given entry.
@@ -133,6 +140,7 @@ bool LinkedList::contains(int anEntry){
    else {
       return true;
    }
+   curr = nullptr; //return to memory?
 }//end contains
 
 /** Get the count of number of nodes traversed.
