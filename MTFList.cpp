@@ -18,7 +18,7 @@ MTFList::MTFList()
 //Destructor
 MTFList::~MTFList()
 {
-   clear(); //How do I get this to work? LinkedList:: clear();
+   clear(); //inherits clear from LinkedList class
 }//end destructor
 
 /** Tests whether the list contains a given entry.
@@ -27,6 +27,6 @@ MTFList::~MTFList()
  @param anEntry  The entry to locate.
  @return  True if list contains anEntry, or false if not. */
 bool MTFList::contains(int anEntry){
-
+  return true;
 
 }//end contains
