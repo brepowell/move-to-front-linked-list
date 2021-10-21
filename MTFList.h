@@ -12,27 +12,29 @@
 class MTFList : public LinkedList
 {
 public:
+/*
    //Default Constructor
    MTFList();           
    
    //Destructor
    ~MTFList();
-
+*/
    /** Tests whether the list contains a given entry.
     Overrides contains from LinkedList.h
     @post If the entry is found, the node is moved to the front of the list.
     @param anEntry  The entry to locate.
     @return  True if list contains anEntry, or false if not. */
-   bool contains(int anEntry);
+   bool contains(int anEntry); //try override here
 
+/*
 private:
+   /* try commenting out -- suggestion from Blake
    //Node struct - to build our nodes MTFList::Node
    struct Node
    {
       int data;
       Node* next;
    }; //important to include the semicolon!!!!
-   
    //Keep track of the list size for the isEmpty and getCurrentSize functions 
    int listSize = 0;
 
@@ -42,6 +44,7 @@ private:
 protected:
    //Keep track of the number of nodes traversed during the search
    int traverseCount = 0;
+*/
 
 };//end MTFList class
 #endif

@@ -5,13 +5,14 @@
 
 //** MTFList */
 #include <iostream>
-#include "LinkedList.h"
+//#include "LinkedList.h" //try without this
 #include "MTFList.h"
 using namespace std;
 
+/*
 //Default Constructor
 MTFList::MTFList()
-   : head(nullptr), listSize(0)
+   : head(nullptr), listSize(0), traverseCount(0)
 {
 }//end default constructor         
 
@@ -20,6 +21,7 @@ MTFList::~MTFList()
 {
    clear(); //inherits clear from LinkedList class
 }//end destructor
+*/
 
 /** Tests whether the list contains a given entry.
  Overrides contains from LinkedList.h
@@ -30,7 +32,10 @@ bool MTFList::contains(int anEntry){
    Node* moveEntry = nullptr; //create a pointer to point to the node to move
    Node* prev = head; //create a pointer to point to the previous node
    Node* curr = head; //create a pointer to point to the current node
-
+   
+   if (getCurrentSize() != 0)
+      traverseCount++; //If the list is not empty, there should be at least 1 node traversed.
+   
    //traverse the list until the entry is found
    while (curr != nullptr && curr->data != anEntry){
       prev = curr;
@@ -38,12 +43,12 @@ bool MTFList::contains(int anEntry){
       traverseCount++; //Increase the count of nodes traversed
    }  
 
-   //if the list is empty, return false
+   //if the list is empty, return false -- data was not found
    if (curr == nullptr){
       return false;
    }
    else {
-      //Use moveEntry pointer to point to the node to delete
+      //If the list is not empty, use moveEntry pointer to point to the node to delete
       moveEntry = curr;
       curr = curr->next; //Move current to the next node
       moveEntry->next = head; //Link the moved node to the head of the list

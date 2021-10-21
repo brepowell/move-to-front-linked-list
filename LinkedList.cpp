@@ -5,7 +5,7 @@
 
 //** LinkedList */
 #include <iostream>
-#include "IList.h"
+//#include "IList.h" //do I need this?
 #include "LinkedList.h"
 using namespace std;
 
@@ -128,7 +128,10 @@ void LinkedList::clear(){
  @return  True if list contains anEntry, or false if not. */
 bool LinkedList::contains(int anEntry){
    Node* curr = head; //create a pointer to point to the current node
-   //traverse the list until the entry is found
+   if (getCurrentSize() != 0)
+      traverseCount++; //If the list is not empty, there should be at least 1 node traversed.
+   
+   //traverse the list until the entry is found, then stop
    while (curr != nullptr && curr->data != anEntry){
       curr = curr->next;
       traverseCount++; //increase the count of nodes traversed

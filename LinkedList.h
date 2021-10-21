@@ -9,7 +9,7 @@
 #define LINKEDLIST_H
 #include "IList.h"
 
-class LinkedList
+class LinkedList : public IList //added
 {
 public:
    //Default Constructor
@@ -53,7 +53,7 @@ public:
    /** Tests whether the list contains a given entry.
     @param anEntry  The entry to locate.
     @return  True if list contains anEntry, or false if not. */
-   bool contains(int anEntry);
+   virtual bool contains(int anEntry); //make this virtual or create a new move to front?
 
    /** Get the count of number of nodes traversed.
     @return  The integer number of nodes traversed since last time the count was reset. */
@@ -62,23 +62,21 @@ public:
    /** Reset the count of nodes traversed to zero. */
    void resetTraverseCount();
 
-private:
-   //Node struct - to build our nodes LinkedList::Node
+protected:
+   //Node struct - to build our nodes LinkedList::Node --- moved to protected
    struct Node
    {
       int data;
       Node* next;
    }; //important to include the semicolon!!!!
-   
+   //Keep track of the number of nodes traversed during the search
+   int traverseCount = 0;
+
    //Keep track of the list size for the isEmpty and getCurrentSize functions 
    int listSize = 0;
 
    //Create the head pointer and initialize to 0
    Node* head = nullptr;
-
-protected:
-   //Keep track of the number of nodes traversed during the search
-   int traverseCount = 0;
 
 };//end LinkedList class
 
