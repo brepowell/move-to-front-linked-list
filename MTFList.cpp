@@ -5,23 +5,9 @@
 
 //** MTFList */
 #include <iostream>
-//#include "LinkedList.h" //try without this
 #include "MTFList.h"
 using namespace std;
 
-/*
-//Default Constructor
-MTFList::MTFList()
-   : head(nullptr), listSize(0), traverseCount(0)
-{
-}//end default constructor         
-
-//Destructor
-MTFList::~MTFList()
-{
-   clear(); //inherits clear from LinkedList class
-}//end destructor
-*/
 
 /** Tests whether the list contains a given entry.
  Overrides contains from LinkedList.h

@@ -1,4 +1,4 @@
-//just to test things
+/*//just to test things
 #include "LinkedList.h"
 #include "MTFList.h"
 #include <iostream>
@@ -62,3 +62,4 @@ int main(int argc, char const *argv[])
    cout << "Current size is: " << test.getCurrentSize() << endl;
 
 }//end main
+*/

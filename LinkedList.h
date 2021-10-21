@@ -63,7 +63,7 @@ public:
    void resetTraverseCount();
 
 protected:
-   //Node struct - to build our nodes LinkedList::Node --- moved to protected
+   //Node struct - to build our nodes LinkedList::Node - moved to protected
    struct Node
    {
       int data;
@@ -79,6 +79,4 @@ protected:
    Node* head = nullptr;
 
 };//end LinkedList class
-
-//#include "LinkedList.cpp" - textbook did this somewhere - because of template class
 #endif
