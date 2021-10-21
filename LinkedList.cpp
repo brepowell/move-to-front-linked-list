@@ -97,7 +97,7 @@ bool LinkedList::remove(int anEntry){
 
 /** Prints the list
  @post If successful, prints out each entry in the list, one by one */
-void LinkedList::printList(){
+void LinkedList::printList()const{
    Node* curr = head;
    while(curr != nullptr){
       cout << curr->data << " ";
@@ -145,7 +145,7 @@ bool LinkedList::contains(int anEntry){
 
 /** Get the count of number of nodes traversed.
  @return  The integer number of nodes traversed since last time the count was reset. */
-int LinkedList::getTraverseCount(){
+int LinkedList::getTraverseCount() const{
    return traverseCount;
 }//end getTraverseCount
 

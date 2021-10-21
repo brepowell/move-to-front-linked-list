@@ -35,7 +35,7 @@ bool MTFList::contains(int anEntry){
    while (curr != nullptr && curr->data != anEntry){
       prev = curr;
       curr = curr->next;
-      traverseCount++; //increase the count of nodes traversed
+      traverseCount++; //Increase the count of nodes traversed
    }  
 
    //if the list is empty, return false
@@ -45,10 +45,9 @@ bool MTFList::contains(int anEntry){
    else {
       //Use moveEntry pointer to point to the node to delete
       moveEntry = curr;
-      
-      curr = curr->next; //move current to the next node
-      prev->next = curr; //connect previous where current is now
+      curr = curr->next; //Move current to the next node
       moveEntry->next = head; //Link the moved node to the head of the list
+      prev->next = curr; //Link previous node to where current is now
       head = moveEntry; //Point the head pointer at the new node
       
       moveEntry = nullptr; //return to memory
@@ -56,6 +55,4 @@ bool MTFList::contains(int anEntry){
       curr = nullptr; //return to memory
       return true;
    } //end if
-   
-
 }//end contains

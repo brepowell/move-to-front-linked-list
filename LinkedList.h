@@ -44,7 +44,7 @@ public:
 
    /** Prints the list
     @post If successful, prints out each entry in the list, one by one */
-   void printList();
+   void printList() const;
 
    /** Removes all nodes from this list.
     @post  The list contains no nodes, and the size of the list is 0. */
@@ -57,7 +57,7 @@ public:
 
    /** Get the count of number of nodes traversed.
     @return  The integer number of nodes traversed since last time the count was reset. */
-   int getTraverseCount();
+   int getTraverseCount() const;
 
    /** Reset the count of nodes traversed to zero. */
    void resetTraverseCount();
