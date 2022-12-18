@@ -1,6 +1,5 @@
 // Created by Breanna Powell
 // 501 B / FALL
-// SID: 0641962
 // Due: 2021 10 20
 
 Writeup:
